@@ -34,7 +34,7 @@ export default {
 .shaht {
     display: flex;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid rosybrown;
     margin-right: 10px;
 
     &__floor {

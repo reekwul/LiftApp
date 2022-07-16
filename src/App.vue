@@ -61,6 +61,7 @@ export default {
 .wrapper{
     margin-top: 50px;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     &__btn{
         display: flex;

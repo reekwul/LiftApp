@@ -94,7 +94,7 @@ export default {
     box-sizing: border-box;
     width: $width;
     height: $height;
-    border: 2px solid rosybrown;
+
     &__btn{
         border: 2px solid rosybrown;
         font-size: 16px;
