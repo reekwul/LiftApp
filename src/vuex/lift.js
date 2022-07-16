@@ -12,17 +12,18 @@ export const lifts = {
 
     },
     mutations: {
-        setlifts(state,shahts){
-            for(let i = 0;i<shahts;i++){
+        setlifts(state, shahts) {
+            for (let i = 0; i < shahts; i++) {
                 state.lift.push({
                     floor: 1,
-                    state:true
+                    state: true,
+                    name: (i + 1) + 'shaht'
                 })
+            }
         }
-}
     },
     actions: {
-        setLifts({commit}){
+        setLifts({commit}) {
             commit('setlifts', shahts);
         }
     },

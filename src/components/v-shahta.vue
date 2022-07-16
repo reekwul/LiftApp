@@ -2,8 +2,10 @@
     <div class="shaht">
         <div class="shaht__floor">
             <v-lift
-            :id="lift"
-            />
+                class="shaht__lift"
+                :id="lift.name"
+            >{{ lift.floor }}
+            </v-lift>
         </div>
     </div>
 
@@ -32,7 +34,7 @@ export default {
 .shaht {
     display: flex;
     justify-content: center;
-    border: 2px solid black;
+    border: 1px solid black;
     margin-right: 10px;
 
     &__floor {
@@ -40,8 +42,11 @@ export default {
         align-self: end;
         width: $width;
         height: $height;
+    }
 
-
+    &__lift {
+        display: flex;
+        justify-content: center;
     }
 }
 </style>

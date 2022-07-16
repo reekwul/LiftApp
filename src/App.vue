@@ -67,7 +67,7 @@ export default {
         flex-direction: column-reverse;
     }
     &__shaht{
-        background: rosybrown;
+        background: aliceblue;
     }
 }
 

@@ -5,7 +5,7 @@ import {lifts} from "@/vuex/lift";
 
 export default createStore({
     modules: {
-        floors:floors,
-        lifts:lifts
+        floors: floors,
+        lifts: lifts
     }
 });

@@ -1,6 +1,7 @@
 <template>
     <div class="btn_lift">
         <button
+            class="btn_lift__btn"
             @click="startLift()"
         >
             {{ floors }}
@@ -29,27 +30,41 @@ export default {
         }),
 
         async startLift() {
-            let freedom = this.lift.findIndex(el => el.state === true)
+
             this.add(this.floors);
+
+            let freedom = this.lift.findIndex(el => el.state === true)
+
             if (freedom !== -1) {
 
                 this.lift[freedom].state = false;
-                console.log(this.lift[freedom])
 
                 while (this.floor.length > 0) {
-                          let res = this.floor[freedom] > this.lift[freedom].floor ? this.floor[freedom] - this.lift[freedom].floor: this.lift[freedom].floor - this.floor[0]
-                            console.log(res)
+
+                    let res = this.floor[0] > this.lift[freedom].floor ?
+                        this.floor[0] - this.lift[freedom].floor : this.lift[freedom].floor - this.floor[0];
+
+                    this.lift[freedom].floor = this.floor[0];
+
+                    this.del(this.floor[0]);
+
+
                     let i = await new Promise((resolve) => {
+                        let lift = document.getElementById(this.lift[freedom].name);
+                        lift.style.background = 'rgba(0, 255, 40, 1)';
+                        lift.style.transition = `transform ${res}s`;
+                        lift.style.transform = `translate3d(0px, -${150 * (this.lift[freedom].floor - 1)}px,0)`;
+
+
                         setTimeout(() => {
 
+                            let freedomLiftColor1 = setInterval(() => lift.style.background = ' rgba(0, 255, 40, 0.1)', 500)
+                            let freedomLiftColor2 = setInterval(() => lift.style.background = ' rgba(0, 255, 40, 0.7)', 1000)
+
                             setTimeout(() => {
-                                console.log(`open ${this.floor[freedom]}`);
-
-                                this.lift[freedom].floor = this.floor[freedom];
-
-                                this.del(this.floor[freedom]);
-
-                                console.log(this.floor)
+                                clearInterval(freedomLiftColor1);
+                                clearInterval(freedomLiftColor2);
+                                lift.style.background = 'white';
                                 resolve(this.floor.length)
                             }, 3000)
 
@@ -57,7 +72,6 @@ export default {
                     });
                     if (!i) {
                         this.lift[freedom].state = true;
-                        console.log(this.lift[freedom])
                     }
                 }
             }
@@ -81,5 +95,10 @@ export default {
     width: $width;
     height: $height;
     border: 2px solid rosybrown;
+    &__btn{
+        border: 2px solid rosybrown;
+        font-size: 16px;
+        font-weight: bold;
+    }
 }
 </style>
